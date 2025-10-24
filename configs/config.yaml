@@ -1,0 +1,20 @@
+model:
+  name: 'yolov8m.pt' # Model 'm' (medium) như bạn muốn
+  classes: [2, 3, 5, 7] # 2:car, 3:motorcycle, 5:bus, 7:truck
+
+video:
+  # Dùng 'webcam' hoặc đường dẫn 'samples/input.mp4'
+  source: 'samples/input.mp4'
+  show_output: True
+  save_output: True
+  output_path: 'samples/output.mp4'
+
+counting_line:
+  y_coordinate: 100 # Tọa độ Y của vạch đếm (cho video 1080p)
+  color_bgr: [0, 0, 255] # Màu đỏ (BGR)
+  thickness: 2
+
+display:
+  count_text_color_bgr: [0, 0, 255] # Màu đỏ
+  font_scale: 2
+  thickness: 3

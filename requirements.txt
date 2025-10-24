@@ -1,0 +1,5 @@
+# This file lists the dependencies required for the project.
+
+opencv-python
+ultralytics #For YOLOv8 object detection and segmentation
+PyYAML
