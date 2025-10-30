@@ -21,7 +21,7 @@ class VehicleCounter:
         self.classes_to_count = model_cfg['classes']
 
         # 2. Cài đặt vạch đếm
-        self.line_y = line_cfg['y_coordinate']
+        self.line_x = line_cfg['x_coordinate']
         self.line_color = tuple(line_cfg['color_bgr'])
         self.line_thickness = line_cfg['thickness']
 
@@ -61,32 +61,32 @@ class VehicleCounter:
             # 2. Lặp qua các đối tượng đã track
             for box, track_id in zip(boxes, track_ids):
                 x, y, w, h = box
-                center_y = int(y)  # Tọa độ Y của tâm
+                center_x = int(x)  # Tọa độ Y của tâm
 
                 # Cập nhật lịch sử vị trí
                 track = self.track_history[track_id]
-                track.append(center_y)
+                track.append(center_x)
                 if len(track) > 2:
                     track.pop(0)
 
                 # 3. Logic đếm khi vượt qua vạch
                 if track_id not in self.counted_ids and len(track) == 2:
-                    prev_y = track[0]
+                    prev_x = track[0]
 
                     # Đi từ trên xuống (vượt qua vạch)
-                    if prev_y < self.line_y and center_y >= self.line_y:
+                    if prev_x < self.line_x and center_x >= self.line_x:
                         self.vehicle_count += 1
                         self.counted_ids.add(track_id)
                         utils.draw_pass_event(annotated_frame, x, y, self.pass_color_down)
 
                     # Đi từ dưới lên (vượt qua vạch)
-                    elif prev_y > self.line_y and center_y <= self.line_y:
+                    elif prev_x > self.line_x and center_x <= self.line_x:
                         self.vehicle_count += 1
                         self.counted_ids.add(track_id)
                         utils.draw_pass_event(annotated_frame, x, y, self.pass_color_up)
 
         # 4. Vẽ vạch đếm và tổng số xe
-        utils.draw_counting_line(annotated_frame, self.line_y, self.line_color, self.line_thickness)
+        utils.draw_counting_line(annotated_frame, self.line_x, self.line_color, self.line_thickness)
         utils.draw_vehicle_count(annotated_frame, self.vehicle_count, self.count_color, self.font_scale,
                                  self.font_thickness)
 

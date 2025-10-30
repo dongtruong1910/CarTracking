@@ -10,10 +10,10 @@ def load_config(config_path):
         print(f"Lỗi: Không tìm thấy file config tại '{config_path}'")
         return None
 
-def draw_counting_line(frame, y_coord, color, thickness):
+def draw_counting_line(frame, x_coord, color, thickness):
     """Vẽ vạch đếm ngang trên khung hình."""
-    frame_width = frame.shape[1]
-    cv2.line(frame, (0, y_coord), (frame_width, y_coord), color, thickness)
+    frame_height = frame.shape[0]
+    cv2.line(frame, (x_coord, 0), (x_coord,frame_height), color, thickness)
 
 def draw_vehicle_count(frame, count, color, font_scale, thickness):
     """Hiển thị tổng số xe đếm được."""

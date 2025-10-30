@@ -10,7 +10,7 @@ video:
   output_path: 'samples/output.mp4'
 
 counting_line:
-  y_coordinate: 100 # Tọa độ Y của vạch đếm (cho video 1080p)
+  x_coordinate: 1100 # Tọa độ X của vạch đếm (cho video 1280x720)
   color_bgr: [0, 0, 255] # Màu đỏ (BGR)
   thickness: 2
 
